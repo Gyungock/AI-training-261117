@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가오슝 4박 5일 감성 여행 가이드</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans KR & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ocean: {
+                            50: '#f0f7fc',
+                            100: '#dcebf7',
+                            200: '#bdd9f0',
+                            500: '#1c72b8',
+                            600: '#145c99',
+                            700: '#0F4C81', // 딥 오션 블루
+                            800: '#0b3a63',
+                            900: '#082b4a',
+                        },
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14B8A6', // 틸 민트
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        coral: {
+                            50: '#fff1f1',
+                            100: '#ffe1e1',
+                            400: '#ff8585',
+                            500: '#FF6B6B', // 선셋 코랄
+                            600: '#e85353',
+                        },
+                        sand: {
+                            50: '#FAF8F5',  // 샌드 베이지
+                            100: '#F3EFEA',
+                            200: '#E6DFD5',
+                        },
+                        mrt: {
+                            red: '#e11d48',      // 가오슝 첩운 홍선 (Red Line)
+                            orange: '#f97316',   // 가오슝 첩운 귤선 (Orange Line)
+                            lrt: '#10b981',      // 가오슝 경전철 (Circular LRT)
+                            ferry: '#0284c7',    // 페리/고속선 (Ferry)
+                            train: '#4f46e5',    // 대만철도 TRA 기차
+                            bus: '#8b5cf6',      // 버스/택시 (Bus/Taxi)
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 커스텀 스크롤바 숨김 (탭 가로 스크롤용) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* 부드러운 전환 애니메이션 */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 완료된 일정 스타일 */
+        .completed-card {
+            opacity: 0.72;
+            background-color: #f4f1ec;
+        }
+        .completed-card .place-title {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-sand-50 text-slate-800 antialiased selection:bg-ocean-100 selection:text-ocean-900 pb-20">
+
+    <!-- 상단 히어로 헤더 -->
+    <header class="relative bg-gradient-to-br from-ocean-800 via-ocean-700 to-teal-500 text-white overflow-hidden shadow-lg">
+        <!-- 배경 장식 그래픽 -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <svg class="w-full h-full" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="710" cy="70" r="170" fill="#FF6B6B"/>
+                <circle cx="110" cy="340" r="220" fill="#14B8A6"/>
+                <path d="M0 325 Q 200 265, 400 325 T 800 325 L 800 400 L 0 400 Z" fill="#FAF8F5"/>
+            </svg>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-xs sm:text-sm font-medium text-ocean-50 mb-3 border border-white/25">
+                        <i class="fa-solid fa-compass text-coral-400"></i>
+                        <span>KAOHSIUNG · XIAOLIUQIU · TAINAN</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                        가오슝 · 소류구 · 타이난 4박 5일
+                    </h1>
+                    <p class="mt-2 text-ocean-100 text-sm sm:text-base max-w-xl">
+                        항구 도시 가오슝의 야경부터 에메랄드빛 소류구의 바다거북, 대만의 옛 수도 타이난의 로컬 미식까지 완벽하게 즐기는 남부 대만 감성 여행 플래너입니다.
+                    </p>
+                </div>
+
+                <!-- 전체 진행률 위젯 -->
+                <div class="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/25 min-w-[230px]">
+                    <div class="flex justify-between items-center text-xs font-medium text-ocean-50 mb-1.5">
+                        <span>전체 여행 달성률</span>
+                        <span id="progress-text" class="font-bold text-white text-sm">0% (0/27)</span>
+                    </div>
+                    <div class="w-full bg-ocean-950/40 rounded-full h-2.5 overflow-hidden">
+                        <div id="progress-bar" class="bg-gradient-to-r from-coral-500 to-amber-300 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <p class="text-[11px] text-ocean-100 mt-2">
+                        <i class="fa-regular fa-circle-check mr-1 text-teal-100"></i>체크 및 메모는 자동 저장됩니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 여행 핵심 요약 배지 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-7 pt-6 border-t border-white/20 text-sm">
+                <div class="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-2.5 backdrop-blur-xs">
+                    <div class="w-8 h-8 rounded-lg bg-coral-500 flex items-center justify-center shrink-0 shadow-xs">
+                        <i class="fa-solid fa-map-location-dot text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] text-ocean-100">핵심 권역</div>
+                        <div class="font-semibold">가오슝 · 소류구 · 타이난</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-2.5 backdrop-blur-xs">
+                    <div class="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center shrink-0 shadow-xs">
+                        <i class="fa-solid fa-water text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] text-ocean-100">여행 하이라이트</div>
+                        <div class="font-semibold">바다거북 스노클링 & 골목 미식</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-white/10 rounded-xl px-4 py-2.5 backdrop-blur-xs">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 shadow-xs">
+                        <i class="fa-solid fa-train-subway text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] text-ocean-100">주요 이동수단</div>
+                        <div class="font-semibold">MRT · 고속페리 · TRA 기차</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 스티키 탭 네비게이션 -->
+    <nav class="sticky top-0 z-30 bg-sand-50/95 backdrop-blur-md border-b border-sand-200 shadow-xs">
+        <div class="max-w-5xl mx-auto px-2 sm:px-6">
+            <div class="flex items-center overflow-x-auto no-scrollbar py-2.5 gap-1.5 sm:gap-2" id="tab-container">
+                <!-- 탭 버튼들은 JS로 렌더링 -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+            
+            <!-- 좌측/메인 컬럼: 일차별 일정 또는 전체 요약/체크리스트 -->
+            <div class="lg:col-span-8 space-y-6" id="main-content-area">
+                <!-- 동적 콘텐츠 렌더링 영역 -->
+            </div>
+
+            <!-- 우측 사이드바: 환율 계산기 & 노선 안내 위젯 -->
+            <aside class="lg:col-span-4 space-y-6">
+                
+                <!-- 대만 달러(TWD) <-> 원화(KRW) 간편 환율 계산기 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-xl bg-ocean-50 text-ocean-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-calculator"></i>
+                            </span>
+                            <div>
+                                <h2 class="font-bold text-slate-800 text-base">간편 환율 계산기</h2>
+                                <p class="text-[11px] text-slate-400">야시장·쇼핑 필수 실시간 계산</p>
+                            </div>
+                        </div>
+                        <button onclick="resetExchange()" class="text-xs text-slate-400 hover:text-ocean-600 transition px-2 py-1 rounded-lg hover:bg-slate-100" title="초기화">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 적용 환율 설정 -->
+                    <div class="bg-slate-50 rounded-xl p-3 mb-4 flex items-center justify-between border border-slate-100">
+                        <label for="exchange-rate" class="text-xs font-medium text-slate-600">적용 환율 (1 TWD =)</label>
+                        <div class="flex items-center gap-1">
+                            <input type="number" id="exchange-rate" value="43.5" step="0.1" 
+                                class="w-16 text-right font-bold text-sm text-ocean-700 bg-white border border-slate-200 rounded-lg px-2 py-1 focus:outline-none focus:border-ocean-500">
+                            <span class="text-xs font-medium text-slate-500">원</span>
+                        </div>
+                    </div>
+
+                    <!-- 입력 필드 -->
+                    <div class="space-y-3">
+                        <div class="relative">
+                            <label class="block text-xs font-semibold text-slate-500 mb-1">대만 달러 (TWD / NT$)</label>
+                            <div class="relative flex items-center">
+                                <span class="absolute left-3.5 text-sm font-bold text-ocean-600">NT$</span>
+                                <input type="number" id="twd-input" placeholder="0" 
+                                    class="w-full pl-12 pr-4 py-2.5 bg-ocean-50/40 border border-ocean-200 rounded-xl font-bold text-slate-800 text-right focus:outline-none focus:ring-2 focus:ring-ocean-500/30 focus:border-ocean-500 transition">
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center -my-1">
+                            <div class="w-7 h-7 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 text-xs">
+                                <i class="fa-solid fa-arrow-right-arrow-left rotate-90"></i>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <label class="block text-xs font-semibold text-slate-500 mb-1">대한민국 원화 (KRW)</label>
+                            <div class="relative flex items-center">
+                                <span class="absolute left-3.5 text-sm font-bold text-coral-500">₩</span>
+                                <input type="number" id="krw-input" placeholder="0" 
+                                    class="w-full pl-10 pr-4 py-2.5 bg-coral-50/30 border border-coral-200/80 rounded-xl font-bold text-slate-800 text-right focus:outline-none focus:ring-2 focus:ring-coral-500/30 focus:border-coral-500 transition">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 빠른 금액 버튼 -->
+                    <div class="mt-4 pt-3 border-t border-slate-100">
+                        <p class="text-[11px] text-slate-400 mb-2">자주 쓰는 단위 빠른 입력 (TWD)</p>
+                        <div class="grid grid-cols-4 gap-1.5">
+                            <button onclick="addTwd(50)" class="py-1.5 text-xs font-semibold bg-sand-100 hover:bg-ocean-100 hover:text-ocean-700 text-slate-600 rounded-lg transition cursor-pointer">+50</button>
+                            <button onclick="addTwd(100)" class="py-1.5 text-xs font-semibold bg-sand-100 hover:bg-ocean-100 hover:text-ocean-700 text-slate-600 rounded-lg transition cursor-pointer">+100</button>
+                            <button onclick="addTwd(500)" class="py-1.5 text-xs font-semibold bg-sand-100 hover:bg-ocean-100 hover:text-ocean-700 text-slate-600 rounded-lg transition cursor-pointer">+500</button>
+                            <button onclick="addTwd(1000)" class="py-1.5 text-xs font-semibold bg-sand-100 hover:bg-ocean-100 hover:text-ocean-700 text-slate-600 rounded-lg transition cursor-pointer">+1000</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 가오슝·근교 교통 노선 컬러 가이드 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5">
+                    <h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-map-signs text-ocean-700"></i>
+                        <span>대만 남부 대중교통 컬러 안내</span>
+                    </h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-rose-50/70 border border-rose-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-rose-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-red"></span>MRT 레드라인
+                            </span>
+                            <span class="text-slate-600">공항 · 미려도 · 쭤잉</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-orange-50/70 border border-orange-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-orange-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-orange"></span>MRT 오렌지라인
+                            </span>
+                            <span class="text-slate-600">시즈완 · 옌청푸 · 미려도</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-emerald-50/70 border border-emerald-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-emerald-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-lrt"></span>순환 경전철(LRT)
+                            </span>
+                            <span class="text-slate-600">보얼예술특구 · 대항교</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-sky-50/70 border border-sky-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-sky-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-ferry"></span>고속 페리
+                            </span>
+                            <span class="text-slate-600">둥강 ↔ 소류구 (약 25분)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-indigo-50/70 border border-indigo-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-indigo-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-train"></span>TRA 일반열차
+                            </span>
+                            <span class="text-slate-600">신쭤잉/가오슝 ↔ 타이난</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 가오슝 교통 노선 컬러 가이드 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-5">
+                    <h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-map-signs text-ocean-600"></i>
+                        <span>가오슝 대중교통 노선 색상 안내</span>
+                    </h3>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-rose-50/70 border border-rose-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-rose-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-red"></span>레드라인 (홍선)
+                            </span>
+                            <span class="text-slate-600">공항 · 미려도 · 쭤잉(연지담)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-orange-50/70 border border-orange-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-orange-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-orange"></span>오렌지라인 (귤선)
+                            </span>
+                            <span class="text-slate-600">미려도 · 시즈완(하마싱) · 옌청푸</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-emerald-50/70 border border-emerald-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-emerald-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-lrt"></span>순환 경전철 (LRT)
+                            </span>
+                            <span class="text-slate-600">보얼예술특구 · 아이허 · 미술관</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-sky-50/70 border border-sky-100">
+                            <span class="inline-flex items-center gap-1.5 font-bold text-sky-700">
+                                <span class="w-2.5 h-2.5 rounded-full bg-mrt-ferry"></span>구산 페리
+                            </span>
+                            <span class="text-slate-600">구산 선착장 ↔ 치진섬 (약 5분)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 데이터 초기화 버튼 -->
+                <div class="text-center">
+                    <button onclick="openResetModal()" class="text-xs text-slate-400 hover:text-coral-600 underline underline-offset-4 transition">
+                        체크리스트 및 메모 데이터 전체 초기화
+                    </button>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- 메모 작성/수정 모달 -->
+    <div id="memo-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 fade-in">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-lg text-slate-800" id="memo-modal-title">나만의 여행 메모</h3>
+                <button onclick="closeMemoModal()" class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-500 mb-3" id="memo-modal-subtitle">예약 번호, 꼭 먹을 메뉴, 주의사항 등을 기록해 두세요.</p>
+            <textarea id="memo-textarea" rows="4" placeholder="예: 파파야 우유 꼭 사먹기! 6번 출구 근처에서 만남"
+                class="w-full p-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500/30 focus:border-ocean-500 resize-none"></textarea>
+            <div class="flex justify-end gap-2 mt-4">
+                <button onclick="closeMemoModal()" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 transition">취소</button>
+                <button onclick="saveMemo()" class="px-5 py-2 rounded-xl text-sm font-bold text-white bg-ocean-600 hover:bg-ocean-700 transition shadow-sm">저장하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 커스텀 확인 모달 (alert/confirm 대체용) -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 fade-in text-center">
+            <div class="w-12 h-12 rounded-full bg-coral-100 text-coral-600 flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="font-bold text-lg text-slate-800 mb-1">데이터를 초기화할까요?</h3>
+            <p class="text-xs text-slate-500 mb-5">저장된 모든 일정 완료 체크, 준비물 체크, 개인 메모가 삭제됩니다.</p>
+            <div class="flex justify-center gap-2">
+                <button onclick="closeResetModal()" class="flex-1 py-2.5 rounded-xl text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 transition">취소</button>
+                <button onclick="executeReset()" class="flex-1 py-2.5 rounded-xl text-sm font-bold text-white bg-coral-600 hover:bg-coral-700 transition">초기화 실행</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 토스트 메시지 알림 -->
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-800 text-white text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-message">저장되었습니다.</span>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. 여행 일정 및 체크리스트 데이터 정의
+        // ==========================================
+        const itineraryData = [
+            {
+                day: 1,
+                tabLabel: "Day 1",
+                badge: "가오슝 시내",
+                title: "가오슝 도착 & 항구 야경",
+                subtitle: "항구 예술 단지 산책부터 황금빛 서자만 일몰, 화려한 야시장 먹방까지",
+                items: [
+                    {
+                        id: "d1-1",
+                        time: "13:30",
+                        nameKo: "가오슝 국제공항 도착 & 시내 이동",
+                        nameZh: "高雄國際機場",
+                        transport: { type: "red", label: "MRT 레드라인 (R4)" },
+                        activity: "입국 수속 후 대만 여행지원금(럭키드로우) 응모, 유심/eSIM 개통 및 이지카드(EasyCard) 충전 후 시내 이동",
+                        tip: "공항 1층 입국장 나와서 MRT 레드라인에 탑승하면 미려도역(R10)·가오슝역(R11)까지 약 15~20분이면 도착합니다."
+                    },
+                    {
+                        id: "d1-2",
+                        time: "15:00",
+                        nameKo: "호텔 체크인 & 휴식",
+                        nameZh: "飯店辦理入住",
+                        transport: { type: "red", label: "미려도역 / 가오슝역 인근" },
+                        activity: "교통 허브인 미려도역 또는 가오슝역 부근 호텔 체크인 후 가벼운 옷차림으로 정비",
+                        tip: "둘째 날 둥강(소류구), 셋째 날 타이난 이동을 고려하면 미려도역·가오슝역·쭤잉역 인근 숙소가 동선상 가장 유리합니다."
+                    },
+                    {
+                        id: "d1-3",
+                        time: "16:00",
+                        nameKo: "보얼예술특구 & 대항교 회전쇼",
+                        nameZh: "駁二藝術特區 · 大港橋",
+                        transport: { type: "lrt", label: "경전철(LRT) 보얼대이역 (C12)" },
+                        activity: "항구 폐창고를 개조한 감성 예술 지구 산책 및 아시아 최장 수평 회전교 '대항교' 건너기",
+                        tip: "대항교는 매일 오후 3시(금·토·일은 저녁 7시 추가)에 다리가 90도로 회전하는 장관을 연출합니다!"
+                    },
+                    {
+                        id: "d1-4",
+                        time: "17:00",
+                        nameKo: "하마싱 철도문화원구",
+                        nameZh: "哈瑪星鐵道文化園區",
+                        transport: { type: "lrt", label: "경전철(LRT) 하마싱역 (C14)" },
+                        activity: "탁 트인 잔디밭과 옛 기찻길, 빈티지 조형물 사이에서 산책하며 사진 남기기",
+                        tip: "선선한 해질녘 바람이 불어오는 시간대에 산책하기 좋으며, 바로 옆 시즈완 방향으로 이동하기 수월합니다."
+                    },
+                    {
+                        id: "d1-5",
+                        time: "17:45",
+                        nameKo: "서자만(시즈완) 일몰 & 타구영국영사관",
+                        nameZh: "西子灣 · 打狗英國領事館",
+                        transport: { type: "bus", label: "하마싱역 → 버스(橘1) 또는 택시 5분" },
+                        activity: "붉은 벽돌의 고풍스러운 영국영사관 언덕에서 남중국해와 가오슝 항구를 물들이는 일몰 감상",
+                        tip: "영사관 야외 테라스에서 가오슝 항구로 드나드는 대형 선박과 석양을 바라보며 마시는 아이스티가 일품입니다."
+                    },
+                    {
+                        id: "d1-6",
+                        time: "19:30",
+                        nameKo: "리우허 야시장 먹방 투어",
+                        nameZh: "六合觀光夜市",
+                        transport: { type: "orange", label: "MRT 오렌지라인 시즈완역(O1) → 미려도역(O5)" },
+                        activity: "가오슝 대표 야시장에서 정라오파이 파파야 우유, 해산물 죽, 굴전, 지파이 등 길거리 미식 정복",
+                        tip: "미려도역 11번 출구로 나오면 바로 야시장 입구입니다. 역 중앙 홀의 '빛의 돔' 스테인드글라스도 함께 감상하세요!"
+                    }
+                ]
+            },
+            {
+                day: 2,
+                tabLabel: "Day 2",
+                badge: "소류구 섬투어",
+                title: "소류구 에메랄드 바다 & 바다거북 투어",
+                subtitle: "천연 산호초 섬 소류구에서 바다거북과 함께하는 스노클링과 환상적인 해안 드라이브",
+                items: [
+                    {
+                        id: "d2-1",
+                        time: "08:30",
+                        nameKo: "둥강(동항) 선착장 이동",
+                        nameZh: "東港碼頭 (東琉線船運服務中心)",
+                        transport: { type: "bus", label: "쭤잉역/가오슝역에서 익스프레스 버스 또는 택시 (약 45~55분)" },
+                        activity: "가오슝 시내에서 둥강 여객터미널로 이동하여 왕복 승선권 발권 및 멀미약 복용",
+                        tip: "여권(또는 신분증)이 발권 및 탑승 시 필요하므로 반드시 지참하세요! 클룩/KKday 사전 예약 시 QR로 빠르게 교환 가능합니다."
+                    },
+                    {
+                        id: "d2-2",
+                        time: "10:00",
+                        nameKo: "둥강-소류구 고속 페리 & 전기 스쿠터 대여",
+                        nameZh: "小琉球 · 電動機車租借",
+                        transport: { type: "ferry", label: "고속 페리 탑승 (약 25분 소요)" },
+                        activity: "에메랄드빛 바다를 건너 바이샤웨이(白沙尾) 항구 도착 후 면허 불필요 전기 스쿠터 또는 전동 자전거 대여",
+                        tip: "국제운전면허증이 없어도 여권만으로 탈 수 있는 전기 자전거/무면허 전동 스쿠터를 항구 앞 대여점에서 쉽게 빌릴 수 있습니다."
+                    },
+                    {
+                        id: "d2-3",
+                        time: "11:00",
+                        nameKo: "화병암 스노클링 & 야생 바다거북 만나기",
+                        nameZh: "花瓶岩 浮潛",
+                        transport: { type: "walk", label: "바이샤웨이 항구에서 스쿠터 3분" },
+                        activity: "소류구의 상징인 버섯 모양 산호초 '화병암' 앞 맑은 바다에서 푸른바다거북과 함께 스노클링 체험",
+                        tip: "바다거북 보호를 위해 절대로 만지거나 진로를 방해하면 안 됩니다(벌금 부과). 수중 촬영은 강사님이 고프로로 찍어줍니다!"
+                    },
+                    {
+                        id: "d2-4",
+                        time: "13:00",
+                        nameKo: "소류구 로컬 해산물 맛집 점심",
+                        nameZh: "小琉球 海鮮餐廳 (어부식당 등)",
+                        transport: { type: "walk", label: "시내 중심가 (민성로 일대)" },
+                        activity: "신선한 참치회, 날치알 볶음밥, 소류구 명물 꽈배기 과자(마화쥐안, 麻花捲) 맛보기",
+                        tip: "인기 식당(어부식당 漁夫料理, 다펑 해산물 등)은 점심시간 대기가 있으니 12시 반 전후로 방문하는 것이 좋습니다."
+                    },
+                    {
+                        id: "d2-5",
+                        time: "14:30",
+                        nameKo: "미인동 & 산저우구(산돼지골) 산책",
+                        nameZh: "美人洞 · 山豬溝生態步道",
+                        transport: { type: "walk", label: "해안 일주도로 스쿠터 이동 (약 7분)" },
+                        activity: "기암괴석 산호초 동굴과 울창한 열대 식물이 어우러진 해안 절벽 산책로 트레킹",
+                        tip: "미인동·산저우구·오귀동 통합 입장권(120 TWD) 한 장으로 세 곳 모두 입장할 수 있어 경제적입니다."
+                    },
+                    {
+                        id: "d2-6",
+                        time: "16:30",
+                        nameKo: "합장암 & 백사미(게펜) 해변 일몰",
+                        nameZh: "蛤板灣沙灘 (威尼斯沙灘)",
+                        transport: { type: "walk", label: "해안도로 남서쪽 스쿠터 5분" },
+                        activity: "'대만의 베니스 해변'이라 불리는 하얀 조개껍데기 백사장에서 수평선 너머로 지는 붉은 노을 감상",
+                        tip: "막배 페리 시간(보통 17:00~17:30경, 선사별 상이)을 미리 확인하고 늦지 않게 항구로 복귀하세요!"
+                    },
+                    {
+                        id: "d2-7",
+                        time: "19:30",
+                        nameKo: "가오슝 복귀 & 루이펑 야시장 만찬",
+                        nameZh: "瑞豐夜市",
+                        transport: { type: "red", label: "둥강 → 가오슝 복귀 후 MRT 쥐단역 (R14)" },
+                        activity: "가오슝 시내로 돌아와 현지인들이 가장 사랑하는 루이펑 야시장에서 철판 스테이크, 치즈 감자, 우유 훠궈 즐기기",
+                        tip: "루이펑 야시장은 매주 월요일·수요일 휴무입니다. 만약 월/수요일이라면 '리우허 야시장' 또는 '지린 야시장'으로 대체하세요."
+                    }
+                ]
+            },
+            {
+                day: 3,
+                tabLabel: "Day 3",
+                badge: "타이난 근교",
+                title: "대만의 옛 수도, 타이난 감성·미식 투어",
+                subtitle: "고즈넉한 붉은 벽돌 유적지와 반얀트리 숲, 그리고 대만 미식의 본고장 탐방",
+                items: [
+                    {
+                        id: "d3-1",
+                        time: "09:00",
+                        nameKo: "신쭤잉역/가오슝역 → 타이난역 기차 이동",
+                        nameZh: "台鐵 台南車站",
+                        transport: { type: "train", label: "TRA 일반열차 (자강호/구간쾌차 약 35~45분)" },
+                        activity: "이지카드를 태그하고 대만철도(TRA) 열차에 탑승해 옛 정취가 가득한 타이난 시내로 이동",
+                        tip: "자강호(自強號) 등 특급열차는 약 35분, 구간쾌차는 약 45분 소요됩니다. 이지카드로 자유석 탑승이 가능해 매우 편리해요."
+                    },
+                    {
+                        id: "d3-2",
+                        time: "10:15",
+                        nameKo: "츠칸러우 (적감루)",
+                        nameZh: "赤崁樓",
+                        transport: { type: "bus", label: "타이난역에서 택시 7분 / 시내버스" },
+                        activity: "17세기 네덜란드 통치 시절 지어진 붉은 벽돌 누각과 고풍스러운 정원, 잉어 연못 관람",
+                        tip: "츠칸러우 길 건너편에 있는 '이펑 동과차(義豐阿川冬瓜茶)'에서 시원하고 달콤한 동과차 한 잔을 꼭 마셔보세요!"
+                    },
+                    {
+                        id: "d3-3",
+                        time: "12:00",
+                        nameKo: "국화거리 (궈화제) 로컬 미식 투어",
+                        nameZh: "國華街 美食街",
+                        transport: { type: "walk", label: "츠칸러우에서 도보 10분" },
+                        activity: "타이난 미식의 성지 국화거리에서 한우 우육탕(牛肉湯), 오징어 쌀국수(小卷米粉), 아망 망고/팥빙수 정복",
+                        tip: "추천 맛집: 추자 오징어 쌀국수(邱家小卷米粉), 푸성하오 완궈(富盛號碗粿), 진더 춘권(金得春捲)!"
+                    },
+                    {
+                        id: "d3-4",
+                        time: "14:00",
+                        nameKo: "선농지에 (신농가) 감성 골목 카페",
+                        nameZh: "神農街",
+                        transport: { type: "walk", label: "국화거리에서 도보 5분" },
+                        activity: "청나라 시대 옛 목조 건물이 보존된 좁고 운치 있는 예술 골목 산책 및 아기자기한 소품샵·카페 휴식",
+                        tip: "골목 구석구석 걸린 알록달록한 홍등과 빈티지 창틀이 어우러져 어느 각도에서 찍어도 화보 같은 사진이 나옵니다."
+                    },
+                    {
+                        id: "d3-5",
+                        time: "15:30",
+                        nameKo: "안평고보 & 안평수옥 (트리하우스)",
+                        nameZh: "安平古堡 · 安平樹屋",
+                        transport: { type: "bus", label: "선농지에에서 택시 12분 / 2번·99번 버스" },
+                        activity: "대만에서 가장 오래된 요새 '안평고보'와 거대한 반얀트리 뿌리가 옛 창고를 뒤덮은 신비로운 '안평수옥' 탐방",
+                        tip: "안평수옥 출구 쪽 카페에서 파는 '반얀트리 말차 아이스크림'과 2층 전망대 뷰가 아주 매력적입니다."
+                    },
+                    {
+                        id: "d3-6",
+                        time: "18:30",
+                        nameKo: "하야시 백화점 야경 & 기념품 쇼핑",
+                        nameZh: "林百貨 (HAYASHI)",
+                        transport: { type: "bus", label: "안평에서 택시 15분 (중시구 복귀)" },
+                        activity: "1932년 개관한 대만 최초의 엘리베이터 백화점에서 타이난 한정 굿즈 쇼핑 후 옥상 신사 유적 야경 감상",
+                        tip: "하야시 백화점 바로 맞은편 '타이난시 미술관 2관'의 순백색 기하학 건축물 야경도 함께 둘러보면 완벽합니다."
+                    },
+                    {
+                        id: "d3-7",
+                        time: "20:30",
+                        nameKo: "타이난역에서 가오슝 복귀",
+                        nameZh: "台南車站 → 高雄",
+                        transport: { type: "train", label: "TRA 기차 탑승 (가오슝역/신쭤잉역 하차)" },
+                        activity: "타이난의 맛과 멋을 가득 안고 기차로 가오슝 숙소 복귀 후 휴식",
+                        tip: "밤 시간대에도 열차가 자주 운행하지만, 구글맵에서 열차 시각표를 미리 확인하고 역으로 이동하면 대기 시간을 줄일 수 있어요."
+                    }
+                ]
+            },
+            {
+                day: 4,
+                tabLabel: "Day 4",
+                badge: "가오슝 랜드마크",
+                title: "가오슝 도심 랜드마크 & 로맨틱 야경",
+                subtitle: "호수 위 웅장한 사원부터 화려한 빛의 돔, 사랑의 강 곤돌라까지 알찬 하루",
+                items: [
+                    {
+                        id: "d4-1",
+                        time: "10:00",
+                        nameKo: "연지담 (용호탑 & 춘추각)",
+                        nameZh: "蓮池潭 · 龍虎塔",
+                        transport: { type: "red", label: "MRT 레드라인 쭤잉역(R16) + 버스/택시 5분" },
+                        activity: "거대한 연꽃 호수 위에 세워진 화려한 용호탑과 춘추각 산책하며 가오슝 대표 인증샷 남기기",
+                        tip: "용의 입으로 들어가 호랑이 입으로 나오면 액운이 사라지고 복이 들어온다는 전설이 있으니 꼭 순서대로 걸어보세요!"
+                    },
+                    {
+                        id: "d4-2",
+                        time: "12:30",
+                        nameKo: "불광산 불타기념관 (또는 국립과학공예박물관)",
+                        nameZh: "佛光山佛陀紀念館",
+                        transport: { type: "bus", label: "쭤잉역(R16)에서 하버드 쾌선(E02) 버스 40분" },
+                        activity: "세계 최대 규모 청동 좌불상과 8개의 탑이 늘어선 장엄한 불교 문화 단지 관람 (더운 날엔 실내 박물관 선택 가능)",
+                        tip: "불타기념관 입장료는 무료이며, 시내에서 편하게 쉬고 싶다면 MRT 쥐단역 인근 대형 쇼핑몰·카페 투어로 대체해도 좋습니다."
+                    },
+                    {
+                        id: "d4-3",
+                        time: "16:30",
+                        nameKo: "미려도역 빛의 돔 관람",
+                        nameZh: "美麗島站 光之穹頂",
+                        transport: { type: "red", label: "MRT 레드라인 미려도역 (R10)" },
+                        activity: "4,500여 장의 스테인드글라스로 만든 세계 최대 원형 유리 예술 천장 감상",
+                        tip: "매시 정각에 펼쳐지는 화려한 조명·음악 라이트 쇼 시간에 맞춰 방문하면 더욱 환상적입니다."
+                    },
+                    {
+                        id: "d4-4",
+                        time: "18:00",
+                        nameKo: "싼둬 상권 & 가오슝 시립총도서관 야경",
+                        nameZh: "三多商圈 · 高雄市立圖書館總館",
+                        transport: { type: "red", label: "MRT 레드라인 싼둬상권역 (R8) 도보 8분" },
+                        activity: "세계 최초 현수식 공중 정원 도서관 루프탑에서 가오슝 85빌딩과 항구 야경 한눈에 담기",
+                        tip: "도서관 옥상 정원(신완 정원)은 무료로 개방되며, 밤에는 야자수와 도심 불빛이 어우러져 숨은 야경 명소입니다."
+                    },
+                    {
+                        id: "d4-5",
+                        time: "20:00",
+                        nameKo: "아이허(사랑의 강) 유람선(곤돌라) & 강변 산책",
+                        nameZh: "愛河 愛之船 · 貢多拉船",
+                        transport: { type: "orange", label: "MRT 오렌지라인 시의회역 (O4) 도보 10분" },
+                        activity: "가오슝 도심을 가로지르는 아이허 강에서 라이브 노래가 흐르는 곤돌라 또는 태양광 유람선 탑승",
+                        tip: "유람선 하선 후 강변 노천 펍에서 대만 '18일 생맥주'와 야식을 곁들이며 4일 차 밤을 로맨틱하게 마무리하세요."
+                    }
+                ]
+            },
+            {
+                day: 5,
+                tabLabel: "Day 5",
+                badge: "쇼핑 & 귀국",
+                title: "여유로운 브런치 & 기념품 쇼핑 후 귀국",
+                subtitle: "대만 전통 아침 식사로 시작해 아울렛·백화점 쇼핑까지 알차게 채우는 마지막 날",
+                items: [
+                    {
+                        id: "d5-1",
+                        time: "09:00",
+                        nameKo: "현지인 로컬 조식 (단삥 & 또우장)",
+                        nameZh: "興隆居 또는 傳統早餐店",
+                        transport: { type: "orange", label: "MRT 시의회역(O4) 인근 로컬 조식당" },
+                        activity: "고소한 따뜻한 두유(또우장), 계란 전병(단삥), 육즙 가득한 탕바오(만두)로 든든한 대만식 브런치",
+                        tip: "시청역 인근 '싱롱쥐(興隆居)'는 60년 전통의 로컬 조식 성지로, 탕바오와 샤오빙이 특히 유명합니다."
+                    },
+                    {
+                        id: "d5-2",
+                        time: "11:00",
+                        nameKo: "쳰전 스타플레이스 (SKM Park 아울렛) 쇼핑",
+                        nameZh: "SKM Park Outlets 高雄草衙",
+                        transport: { type: "red", label: "MRT 레드라인 차오야역 (R4A) 2번 출구 바로 앞" },
+                        activity: "공항 바로 전 역에 위치한 유럽풍 야외 아울렛에서 쇼핑, 회전목마 포토존, 펑리수·누가크래커 기념품 구매",
+                        tip: "차오야역은 가오슝 공항역(R4)에서 단 1정거장(약 2분) 거리라 출국 전 짐을 보관하고 쇼핑하기에 최적의 장소입니다!"
+                    },
+                    {
+                        id: "d5-3",
+                        time: "14:00",
+                        nameKo: "가오슝 국제공항 이동 및 출국",
+                        nameZh: "高雄國際機場 出境",
+                        transport: { type: "red", label: "MRT 레드라인 공항역 (R4)" },
+                        activity: "출국 수속 및 택스리펀 확인, 편의점에서 남은 동전과 이지카드 잔액 소진 후 한국으로 귀국",
+                        tip: "이지카드 잔액은 공항 내 편의점(세븐일레븐/패밀리마트)에서 간식이나 음료로 깔끔하게 사용 가능합니다."
+                    }
+                ]
+            }
+        ];
+
+        const defaultChecklistCategories = [
+            {
+                id: "cat-docs",
+                title: "필수 서류 & 교통·금융",
+                icon: "fa-passport",
+                color: "text-ocean-700 bg-ocean-50",
+                items: [
+                    { id: "chk-1", text: "여권 (유효기간 6개월 이상 필수 · 소류구 페리 탑승 시 지참)" },
+                    { id: "chk-2", text: "대만 온라인 입국신고서 (TWAC) & 대만 럭키드로우 사전 등록" },
+                    { id: "chk-3", text: "트래블카드 (트래블월렛/트래블로그) & 대만 달러 현금 (야시장용 소액권)" },
+                    { id: "chk-4", text: "이지카드(EasyCard) 또는 아이패스(iPASS) - MRT·경전철·TRA 기차 공용" }
+                ]
+            },
+            {
+                id: "cat-island",
+                title: "소류구 섬투어 & 타이난 준비물",
+                icon: "fa-umbrella-beach",
+                color: "text-teal-700 bg-teal-50",
+                items: [
+                    { id: "chk-5", text: "배 멀미약 (둥강 ↔ 소류구 페리 탑승 30분 전 복용 추천)" },
+                    { id: "chk-6", text: "래쉬가드/수영복, 아쿠아슈즈, 방수팩 (화병암 스노클링용)" },
+                    { id: "chk-7", text: "산호초 친화형 선크림, 선글라스, 모자 (바다거북 보호)" },
+                    { id: "chk-8", text: "편한 운동화 & 양산 겸용 우산 (타이난 골목 산책 및 스콜 대비)" }
+                ]
+            },
+            {
+                id: "cat-apps",
+                title: "전자기기 & 필수 여행 앱",
+                icon: "fa-mobile-screen-button",
+                color: "text-coral-600 bg-coral-50",
+                items: [
+                    { id: "chk-9", text: "110V 멀티 어댑터 (돼지코) & 대용량 보조배터리 (기내 반입 필수)" },
+                    { id: "chk-10", text: "대만 eSIM 또는 유심 (여권 인증 필요 상품 여부 확인)" },
+                    { id: "chk-11", text: "구글맵 (Google Maps) & 우버 (Uber) 앱 설치 및 카드 등록" },
+                    { id: "chk-12", text: "파파고 (Papago - 번체 중국어 메뉴판 번역) & 대만 철도(TRA) 시간표 앱" }
+                ]
+            }
+        ];
+
+        // ==========================================
+        // 2. 상태 관리 (LocalStorage 연동)
+        // ==========================================
+        const STORAGE_KEY = "kaohsiung_xiaoliuqiu_tainan_v2";
+        let state = {
+            activeTab: "day1", // 'day1' ~ 'day5', 'summary'
+            completedItems: {}, // { 'd1-1': true, ... }
+            memos: {},          // { 'd1-1': '메모 내용', ... }
+            checkedPacking: {}, // { 'chk-1': true, ... }
+            customPacking: []   // [ { id: 'custom-123', text: '상비약' }, ... ]
+        };
+
+        let currentEditingMemoId = null;
+
+        function loadState() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    state = { ...state, ...parsed };
+                    if (!Array.isArray(state.customPacking)) {
+                        state.customPacking = [];
+                    }
+                }
+            } catch (e) {
+                console.error("로컬 스토리지 불러오기 실패:", e);
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {
+                console.error("로컬 스토리지 저장 실패:", e);
+            }
+            updateProgress();
+        }
+
+        // ==========================================
+        // 3. UI 렌더링 로직
+        // ==========================================
+        function getTransportBadgeHTML(transport) {
+            const styles = {
+                red: "bg-rose-50 text-rose-700 border-rose-200",
+                orange: "bg-orange-50 text-orange-700 border-orange-200",
+                lrt: "bg-emerald-50 text-emerald-700 border-emerald-200",
+                ferry: "bg-sky-50 text-sky-700 border-sky-200",
+                train: "bg-indigo-50 text-indigo-700 border-indigo-200",
+                bus: "bg-purple-50 text-purple-700 border-purple-200",
+                walk: "bg-sand-100 text-slate-600 border-sand-200"
+            };
+            const dotColors = {
+                red: "bg-mrt-red",
+                orange: "bg-mrt-orange",
+                lrt: "bg-mrt-lrt",
+                ferry: "bg-mrt-ferry",
+                train: "bg-mrt-train",
+                bus: "bg-mrt-bus",
+                walk: "bg-slate-400"
+            };
+            const cls = styles[transport.type] || styles.walk;
+            const dot = dotColors[transport.type] || dotColors.walk;
+
+            return `
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${cls}">
+                    <span class="w-2 h-2 rounded-full ${dot}"></span>
+                    ${transport.label}
+                </span>
+            `;
+        }
+
+        function renderTabs() {
+            const container = document.getElementById("tab-container");
+            const tabs = [
+                ...itineraryData.map(d => ({
+                    id: `day${d.day}`,
+                    label: d.tabLabel,
+                    sub: d.badge
+                })),
+                {
+                    id: "summary",
+                    label: "전체 요약 & 체크리스트",
+                    icon: "fa-list-check"
+                }
+            ];
+
+            container.innerHTML = tabs.map(tab => {
+                const isActive = state.activeTab === tab.id;
+                if (tab.id === "summary") {
+                    return `
+                        <button onclick="switchTab('${tab.id}')"
+                            class="shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer
+                            ${isActive 
+                                ? 'bg-coral-500 text-white shadow-sm shadow-coral-500/30' 
+                                : 'bg-coral-50 text-coral-600 hover:bg-coral-100 border border-coral-100'}">
+                            <i class="fa-solid ${tab.icon}"></i>
+                            <span>${tab.label}</span>
+                        </button>
+                    `;
+                }
+                return `
+                    <button onclick="switchTab('${tab.id}')"
+                        class="shrink-0 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-left transition-all cursor-pointer
+                        ${isActive 
+                            ? 'bg-ocean-700 text-white shadow-sm shadow-ocean-700/30' 
+                            : 'bg-white text-slate-600 hover:bg-ocean-50 hover:text-ocean-700 border border-sand-200'}">
+                        <span class="text-xs sm:text-sm font-extrabold">${tab.label}</span>
+                        <span class="text-[10px] sm:text-xs font-medium ${isActive ? 'text-teal-100' : 'text-slate-400'}">· ${tab.sub}</span>
+                    </button>
+                `;
+            }).join("");
+        }
+
+        function renderMainContent() {
+            const area = document.getElementById("main-content-area");
+
+            if (state.activeTab === "summary") {
+                renderSummaryAndChecklist(area);
+                return;
+            }
+
+            const dayNum = parseInt(state.activeTab.replace("day", ""), 10);
+            const dayData = itineraryData.find(d => d.day === dayNum);
+            if (!dayData) return;
+
+            const dayCompletedCount = dayData.items.filter(item => state.completedItems[item.id]).length;
+            const dayPercent = Math.round((dayCompletedCount / dayData.items.length) * 100);
+
+            area.innerHTML = `
+                <div class="fade-in space-y-5">
+                    <!-- 일차 헤더 카드 -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-sand-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="px-2.5 py-0.5 rounded-md bg-ocean-700 text-white text-xs font-extrabold tracking-wide">DAY ${dayData.day}</span>
+                                <span class="px-2.5 py-0.5 rounded-md bg-teal-50 text-teal-700 border border-teal-100 text-xs font-bold">${dayData.badge}</span>
+                            </div>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-800">${dayData.title}</h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-1">${dayData.subtitle}</p>
+                        </div>
+                        <div class="shrink-0 bg-ocean-50 px-4 py-3 rounded-xl border border-ocean-100 text-right min-w-[130px]">
+                            <div class="text-[11px] font-medium text-ocean-700">Day ${dayData.day} 달성률 (${dayPercent}%)</div>
+                            <div class="text-lg font-extrabold text-ocean-800">${dayCompletedCount} <span class="text-xs font-normal text-ocean-600">/ ${dayData.items.length}곳</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 타임라인 일정 카드 리스트 -->
+                    <div class="relative space-y-4">
+                        ${dayData.items.map((item) => {
+                            const isDone = !!state.completedItems[item.id];
+                            const memoText = state.memos[item.id] || "";
+
+                            return `
+                                <article class="bg-white rounded-2xl p-5 shadow-sm border transition-all duration-200 ${isDone ? 'completed-card border-sand-200' : 'border-sand-200 hover:border-ocean-500/50 hover:shadow-md'}">
+                                    <div class="flex items-start gap-3.5 sm:gap-4">
+                                        <!-- 완료 체크박스 -->
+                                        <button onclick="toggleComplete('${item.id}')" 
+                                            aria-label="일정 완료 체크"
+                                            class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all cursor-pointer
+                                            ${isDone 
+                                                ? 'bg-teal-500 border-teal-500 text-white' 
+                                                : 'border-slate-300 hover:border-ocean-700 bg-white text-transparent'}">
+                                            <i class="fa-solid fa-check text-xs"></i>
+                                        </button>
+
+                                        <div class="flex-1 min-w-0">
+                                            <!-- 상단 시간 및 교통 배지 -->
+                                            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                                <div class="inline-flex items-center gap-1.5 text-xs font-extrabold text-ocean-700 bg-ocean-50 px-2.5 py-1 rounded-lg">
+                                                    <i class="fa-regular fa-clock"></i>
+                                                    <span>${item.time}</span>
+                                                </div>
+                                                ${getTransportBadgeHTML(item.transport)}
+                                            </div>
+
+                                            <!-- 장소명 (한국어 / 중국어 병기) -->
+                                            <div class="mb-2.5">
+                                                <h3 class="place-title text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                                                    ${item.nameKo}
+                                                    <span class="block sm:inline sm:ml-1.5 text-xs sm:text-sm font-medium text-slate-400">${item.nameZh}</span>
+                                                </h3>
+                                            </div>
+
+                                            <!-- 추천 활동 -->
+                                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                                                ${item.activity}
+                                            </p>
+
+                                            <!-- 맛집 / 꿀팁 박스 -->
+                                            <div class="bg-sand-50 border border-sand-200 rounded-xl p-3 mb-3 flex items-start gap-2.5">
+                                                <span class="text-coral-500 mt-0.5 shrink-0 text-sm">
+                                                    <i class="fa-solid fa-lightbulb"></i>
+                                                </span>
+                                                <p class="text-xs text-slate-700 leading-relaxed">
+                                                    <strong class="text-ocean-800 font-bold">현지 꿀팁:</strong> ${item.tip}
+                                                </p>
+                                            </div>
+
+                                            <!-- 개인 메모 표시 영역 & 버튼 -->
+                                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                                <div class="flex-1">
+                                                    ${memoText 
+                                                        ? `<div onclick="openMemoModal('${item.id}', '${item.nameKo}')" class="cursor-pointer inline-flex items-start gap-1.5 text-xs bg-teal-50 text-teal-800 px-3 py-1.5 rounded-lg border border-teal-100 hover:bg-teal-100/70 transition">
+                                                            <i class="fa-solid fa-note-sticky text-teal-600 mt-0.5"></i>
+                                                            <span class="whitespace-pre-line">${escapeHTML(memoText)}</span>
+                                                           </div>`
+                                                        : `<span class="text-[11px] text-slate-400">기록된 개인 메모가 없습니다.</span>`
+                                                    }
+                                                </div>
+                                                <div class="flex items-center gap-2 self-end sm:self-auto">
+                                                    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.nameZh)}" target="_blank" rel="noopener noreferrer"
+                                                        class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-sand-100 hover:bg-sand-200 transition">
+                                                        <i class="fa-solid fa-location-dot text-coral-500"></i>
+                                                        <span>구글맵 열기</span>
+                                                    </a>
+                                                    <button onclick="openMemoModal('${item.id}', '${item.nameKo}')"
+                                                        class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-ocean-700 bg-ocean-50 hover:bg-ocean-100 transition cursor-pointer">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                        <span>${memoText ? '메모 수정' : '메모 추가'}</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            `;
+                        }).join("")}
+                    </div>
+
+                    <!-- 하단 일차 이동 버튼 -->
+                    <div class="flex items-center justify-between pt-2">
+                        ${dayNum > 1 
+                            ? `<button onclick="switchTab('day${dayNum - 1}')" class="px-4 py-2.5 rounded-xl bg-white border border-sand-200 text-xs sm:text-sm font-bold text-slate-700 hover:bg-sand-100 transition flex items-center gap-2 shadow-xs cursor-pointer">
+                                <i class="fa-solid fa-chevron-left"></i> Day ${dayNum - 1} 일정
+                               </button>`
+                            : `<div></div>`
+                        }
+                        ${dayNum < 5 
+                            ? `<button onclick="switchTab('day${dayNum + 1}')" class="px-4 py-2.5 rounded-xl bg-ocean-700 text-xs sm:text-sm font-bold text-white hover:bg-ocean-800 transition flex items-center gap-2 shadow-sm cursor-pointer">
+                                Day ${dayNum + 1} 일정 <i class="fa-solid fa-chevron-right"></i>
+                               </button>`
+                            : `<button onclick="switchTab('summary')" class="px-4 py-2.5 rounded-xl bg-coral-500 text-xs sm:text-sm font-bold text-white hover:bg-coral-600 transition flex items-center gap-2 shadow-sm cursor-pointer">
+                                체크리스트 확인하기 <i class="fa-solid fa-list-check"></i>
+                               </button>`
+                        }
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSummaryAndChecklist(area) {
+            const defaultItemsCount = defaultChecklistCategories.reduce((acc, cat) => acc + cat.items.length, 0);
+            const totalPacking = defaultItemsCount + state.customPacking.length;
+            const checkedCount = Object.values(state.checkedPacking).filter(Boolean).length;
+
+            area.innerHTML = `
+                <div class="fade-in space-y-6">
+                    <!-- 4박 5일 한눈에 보는 전체 코스 요약 -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-sand-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h2 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-route text-ocean-700"></i>
+                                    <span>4박 5일 권역별 핵심 루트 요약</span>
+                                </h2>
+                                <p class="text-xs text-slate-500 mt-0.5">일차를 클릭하면 상세 가이드로 바로 이동합니다.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            ${itineraryData.map(d => {
+                                const done = d.items.filter(i => state.completedItems[i.id]).length;
+                                return `
+                                    <div onclick="switchTab('day${d.day}')" class="cursor-pointer group p-3.5 rounded-xl border border-sand-200 bg-sand-50/70 hover:bg-ocean-50/70 hover:border-ocean-200 transition">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <div class="flex flex-wrap items-center gap-2">
+                                                <span class="px-2 py-0.5 rounded bg-ocean-700 text-white text-[11px] font-bold">Day ${d.day}</span>
+                                                <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-700 text-[11px] font-bold border border-teal-100">${d.badge}</span>
+                                                <span class="font-bold text-sm text-slate-800 group-hover:text-ocean-700">${d.title}</span>
+                                            </div>
+                                            <span class="text-xs font-semibold shrink-0 ${done === d.items.length ? 'text-teal-600' : 'text-slate-400'}">
+                                                ${done}/${d.items.length} 완료
+                                            </span>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-1.5 text-xs text-slate-600 mt-2">
+                                            ${d.items.map((item, i) => `
+                                                <span class="${state.completedItems[item.id] ? 'line-through text-slate-400' : ''}">${item.nameKo.split('(')[0].trim()}</span>
+                                                ${i < d.items.length - 1 ? '<i class="fa-solid fa-arrow-right text-[10px] text-slate-300"></i>' : ''}
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join("")}
+                        </div>
+                    </div>
+
+                    <!-- 여행 준비물 & 필수 앱 인터랙티브 체크리스트 -->
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-sand-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 pb-4 border-b border-slate-100">
+                            <div>
+                                <h2 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-clipboard-check text-coral-500"></i>
+                                    <span>여행 준비물 & 나만의 체크리스트</span>
+                                </h2>
+                                <p class="text-xs text-slate-500 mt-0.5">소류구 물놀이 용품과 타이난 도보 준비물을 꼼꼼히 챙겨보세요.</p>
+                            </div>
+                            <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-coral-50 text-coral-600 text-xs font-bold border border-coral-100">
+                                준비 완료 ${checkedCount} / ${totalPacking}
+                            </span>
+                        </div>
+
+                        <!-- 나만의 준비물 직접 추가 입력창 -->
+                        <div class="flex gap-2 mb-6">
+                            <input type="text" id="new-packing-input" placeholder="추가할 준비물을 입력하세요 (예: 상비약, 보조가방, 썬글라스)"
+                                onkeydown="if(event.key==='Enter') addCustomPacking()"
+                                class="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-sand-50 border border-sand-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-ocean-500/30 focus:border-ocean-700">
+                            <button onclick="addCustomPacking()" 
+                                class="px-4 py-2.5 rounded-xl bg-ocean-700 hover:bg-ocean-800 text-white text-xs sm:text-sm font-bold transition shrink-0 cursor-pointer flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>추가</span>
+                            </button>
+                        </div>
+
+                        <div class="space-y-5">
+                            ${state.customPacking.length > 0 ? `
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-700 mb-2.5 flex items-center gap-2">
+                                        <span class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs">
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                        <span>내가 직접 추가한 준비물</span>
+                                    </h3>
+                                    <div class="grid grid-cols-1 gap-2">
+                                        ${state.customPacking.map(item => {
+                                            const isChecked = !!state.checkedPacking[item.id];
+                                            return `
+                                                <div class="flex items-center justify-between gap-2 p-3 rounded-xl border transition
+                                                    ${isChecked 
+                                                        ? 'bg-sand-50 border-sand-200 text-slate-400' 
+                                                        : 'bg-white border-sand-200 hover:border-ocean-500/50 text-slate-700'}">
+                                                    <div onclick="togglePacking('${item.id}')" class="flex items-center gap-3 flex-1 cursor-pointer select-none">
+                                                        <div class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition
+                                                            ${isChecked ? 'bg-teal-500 border-teal-500 text-white' : 'border-slate-300 bg-white'}">
+                                                            ${isChecked ? '<i class="fa-solid fa-check text-[11px]"></i>' : ''}
+                                                        </div>
+                                                        <span class="text-xs sm:text-sm font-medium ${isChecked ? 'line-through' : ''}">${escapeHTML(item.text)}</span>
+                                                    </div>
+                                                    <button onclick="deleteCustomPacking('${item.id}')" title="삭제"
+                                                        class="w-7 h-7 rounded-lg text-slate-400 hover:text-coral-500 hover:bg-coral-50 flex items-center justify-center transition cursor-pointer">
+                                                        <i class="fa-solid fa-trash-can text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            `;
+                                        }).join("")}
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            ${defaultChecklistCategories.map(cat => `
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-700 mb-2.5 flex items-center gap-2">
+                                        <span class="w-7 h-7 rounded-lg ${cat.color} flex items-center justify-center text-xs">
+                                            <i class="fa-solid ${cat.icon}"></i>
+                                        </span>
+                                        <span>${cat.title}</span>
+                                    </h3>
+                                    <div class="grid grid-cols-1 gap-2">
+                                        ${cat.items.map(item => {
+                                            const isChecked = !!state.checkedPacking[item.id];
+                                            return `
+                                                <label onclick="togglePacking('${item.id}')" 
+                                                    class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition select-none
+                                                    ${isChecked 
+                                                        ? 'bg-sand-50 border-sand-200 text-slate-400' 
+                                                        : 'bg-white border-sand-200 hover:border-ocean-500/50 text-slate-700'}">
+                                                    <div class="w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition
+                                                        ${isChecked ? 'bg-teal-500 border-teal-500 text-white' : 'border-slate-300 bg-white'}">
+                                                        ${isChecked ? '<i class="fa-solid fa-check text-[11px]"></i>' : ''}
+                                                    </div>
+                                                    <span class="text-xs sm:text-sm font-medium ${isChecked ? 'line-through' : ''}">${item.text}</span>
+                                                </label>
+                                            `;
+                                        }).join("")}
+                                    </div>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================
+        // 4. 인터랙션 핸들러 함수들
+        // ==========================================
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            saveState();
+            renderTabs();
+            renderMainContent();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function toggleComplete(itemId) {
+            state.completedItems[itemId] = !state.completedItems[itemId];
+            saveState();
+            renderMainContent();
+            showToast(state.completedItems[itemId] ? "일정을 완료로 표시했습니다!" : "일정 완료를 해제했습니다.");
+        }
+
+        function togglePacking(chkId) {
+            state.checkedPacking[chkId] = !state.checkedPacking[chkId];
+            saveState();
+            renderMainContent();
+        }
+
+        function addCustomPacking() {
+            const input = document.getElementById("new-packing-input");
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) {
+                showToast("추가할 준비물 내용을 입력해 주세요.");
+                return;
+            }
+            const newId = "custom-" + Date.now();
+            state.customPacking.unshift({ id: newId, text });
+            saveState();
+            renderMainContent();
+            showToast("준비물 항목이 추가되었습니다.");
+        }
+
+        function deleteCustomPacking(id) {
+            state.customPacking = state.customPacking.filter(item => item.id !== id);
+            delete state.checkedPacking[id];
+            saveState();
+            renderMainContent();
+            showToast("항목이 삭제되었습니다.");
+        }
+
+        function updateProgress() {
+            const totalItems = itineraryData.reduce((sum, day) => sum + day.items.length, 0);
+            const completedCount = Object.values(state.completedItems).filter(Boolean).length;
+            const percent = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+
+            const bar = document.getElementById("progress-bar");
+            const text = document.getElementById("progress-text");
+            if (bar) bar.style.width = `${percent}%`;
+            if (text) text.textContent = `${percent}% (${completedCount}/${totalItems})`;
+        }
+
+        // 메모 모달 제어
+        function openMemoModal(itemId, placeName) {
+            currentEditingMemoId = itemId;
+            document.getElementById("memo-modal-title").textContent = `${placeName} 메모`;
+            document.getElementById("memo-textarea").value = state.memos[itemId] || "";
+            const modal = document.getElementById("memo-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.getElementById("memo-textarea").focus();
+        }
+
+        function closeMemoModal() {
+            const modal = document.getElementById("memo-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            currentEditingMemoId = null;
+        }
+
+        function saveMemo() {
+            if (!currentEditingMemoId) return;
+            const val = document.getElementById("memo-textarea").value.trim();
+            if (val) {
+                state.memos[currentEditingMemoId] = val;
+            } else {
+                delete state.memos[currentEditingMemoId];
+            }
+            saveState();
+            renderMainContent();
+            closeMemoModal();
+            showToast("개인 메모가 저장되었습니다.");
+        }
+
+        // 초기화 모달 제어
+        function openResetModal() {
+            const modal = document.getElementById("confirm-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeResetModal() {
+            const modal = document.getElementById("confirm-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        function executeReset() {
+            state.completedItems = {};
+            state.memos = {};
+            state.checkedPacking = {};
+            state.customPacking = [];
+            saveState();
+            renderMainContent();
+            closeResetModal();
+            showToast("모든 데이터가 초기화되었습니다.");
+        }
+
+        // 토스트 알림
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            document.getElementById("toast-message").textContent = msg;
+            toast.classList.remove("opacity-0", "translate-y-2");
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add("opacity-0", "translate-y-2");
+            }, 2200);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        // ==========================================
+        // 5. 간편 환율 계산기 로직 (TWD <-> KRW)
+        // ==========================================
+        const rateInput = document.getElementById("exchange-rate");
+        const twdInput = document.getElementById("twd-input");
+        const krwInput = document.getElementById("krw-input");
+
+        function convertFromTwd() {
+            const rate = parseFloat(rateInput.value) || 0;
+            const twd = parseFloat(twdInput.value);
+            if (isNaN(twd) || twdInput.value === "") {
+                krwInput.value = "";
+                return;
+            }
+            krwInput.value = Math.round(twd * rate);
+        }
+
+        function convertFromKrw() {
+            const rate = parseFloat(rateInput.value) || 1;
+            const krw = parseFloat(krwInput.value);
+            if (isNaN(krw) || krwInput.value === "") {
+                twdInput.value = "";
+                return;
+            }
+            twdInput.value = (krw / rate).toFixed(1).replace(/\.0$/, "");
+        }
+
+        function addTwd(amount) {
+            const current = parseFloat(twdInput.value) || 0;
+            twdInput.value = current + amount;
+            convertFromTwd();
+        }
+
+        function resetExchange() {
+            twdInput.value = "";
+            krwInput.value = "";
+        }
+
+        twdInput.addEventListener("input", convertFromTwd);
+        krwInput.addEventListener("input", convertFromKrw);
+        rateInput.addEventListener("input", convertFromTwd);
+
+        // ==========================================
+        // 6. 앱 초기화
+        // ==========================================
+        window.addEventListener("DOMContentLoaded", () => {
+            loadState();
+            renderTabs();
+            renderMainContent();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
